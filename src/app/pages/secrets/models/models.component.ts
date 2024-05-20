@@ -87,4 +87,26 @@ export class ModelsComponent {
     this.editModel = model;
     this.editModelVisible = true;
   }
+
+  disableModel(modelId: number | undefined) {
+    this.call.disableModel(modelId!).subscribe({
+      next: (msg:any)=>{
+        this.message.success(msg.msg)
+      },
+      error: err => {
+        this.message.error(err.error)
+      }
+    })
+  }
+
+  enableModel(modelId: number | undefined) {
+    this.call.enableModel(modelId!).subscribe({
+      next: (msg:any)=>{
+        this.message.success(msg.msg)
+      },
+      error: err => {
+        this.message.error(err.error)
+      }
+    })
+  }
 }

@@ -1,8 +1,9 @@
 import {SupplierKey} from "./supplier-key";
 import {Model} from "./model";
 
-export interface ModelFee{
-  modelFeeId?: number;
+export interface ModelKeyBind {
+  modelKeyBindId?: number;
+  enable?:boolean;
   supplierKeyId?: number;
   supplierKey?: SupplierKey;
   modelId?: number;

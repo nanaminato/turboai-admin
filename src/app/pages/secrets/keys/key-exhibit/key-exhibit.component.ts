@@ -6,15 +6,17 @@ import {NzMessageService} from "ng-zorro-antd/message";
 import {KeyCallService} from "../../../../services";
 import {SupplierKey} from "../../../../models/keys";
 import { admin_routes } from '../../../../routes';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-key-exhibit',
   standalone: true,
-  imports: [
-    NzCardComponent,
-    NzPopconfirmDirective,
-    RouterLink
-  ],
+    imports: [
+        NzCardComponent,
+        NzPopconfirmDirective,
+        RouterLink,
+        ReactiveFormsModule
+    ],
   templateUrl: './key-exhibit.component.html',
   styleUrl: './key-exhibit.component.css'
 })

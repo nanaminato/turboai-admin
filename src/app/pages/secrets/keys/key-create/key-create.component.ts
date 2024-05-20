@@ -13,7 +13,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NzInputNumberComponent} from "ng-zorro-antd/input-number";
 import {NzSkeletonComponent} from "ng-zorro-antd/skeleton";
 import {KeyCallService} from "../../../../services";
-import {KeyTypes, Model, ModelFee} from "../../../../models/keys";
+import {KeyTypes, Model, ModelKeyBind} from "../../../../models/keys";
 import {admin_routes} from "../../../../routes";
 import {NzOptionComponent, NzSelectComponent} from "ng-zorro-antd/select";
 
@@ -56,20 +56,22 @@ export class KeyCreateComponent {
     supplierKeyId: FormControl<number>,
     baseUrl: FormControl<string>,
     apiKey: FormControl<string>,
-    requestIdentifier: FormControl<number>
+    requestIdentifier: FormControl<number>,
+    enable: FormControl<boolean>
   }> = this.fb.group({
     supplierKeyId: [0, [Validators.required]],
     baseUrl: ['', [Validators.required]],
     apiKey: ['', [Validators.required]],
-    requestIdentifier: [0,[Validators.required]]
+    requestIdentifier: [0,[Validators.required]],
+    enable: [true]
   });
-  modelFees: ModelFee[] = [];
+  modelKeyBinds: ModelKeyBind[] = [];
   allModels: Model[] | undefined;
   actionTip(modelId: number){
-    return this.modelFees.find(r=>r.modelId===modelId)!==undefined?'移除':'添加';
+    return this.modelKeyBinds.find(r=>r.modelId===modelId)!==undefined?'移除':'添加';
   }
   active(modelId: number){
-    return this.modelFees.find(r=>r.modelId===modelId)!==undefined;
+    return this.modelKeyBinds.find(r=>r.modelId===modelId)!==undefined;
   }
   fetchTypes(){
     this.call.getKeyTypes().subscribe({
@@ -103,7 +105,7 @@ export class KeyCreateComponent {
           baseUrl: value.baseUrl!,
           apiKey: value.apiKey!,
           requestIdentifier: value.requestIdentifier!,
-          modelFees: this.modelFees
+          modelKeyBinds: this.modelKeyBinds
         })
         .subscribe({
           next: () =>{
@@ -125,14 +127,15 @@ export class KeyCreateComponent {
   }
   action(model: Model) {
     if(this.active(model.modelId!)){
-      this.modelFees = this.modelFees.filter(r=>r.modelId!==model.modelId);
+      this.modelKeyBinds = this.modelKeyBinds.filter(r=>r.modelId!==model.modelId);
     }else{
-      const modelFee: ModelFee = {
+      const modelKeyBind: ModelKeyBind = {
         modelId : model.modelId,
         model: model,
+        enable: true,
         fee: 1
       };
-      this.modelFees.push(modelFee);
+      this.modelKeyBinds.push(modelKeyBind);
     }
   }
 }

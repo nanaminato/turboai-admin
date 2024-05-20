@@ -47,5 +47,13 @@ export class KeyCallService{
     return this.http.get<KeyTypes[]>(`${this.provider.apiUrl}api/key/types`);
   }
 
+  enableModel(modelId: number){
+    return this.http.post(`${this.provider.apiUrl}api/model/changeModelStatus/${modelId}`,{modelId:modelId,
+    enable:true});
+  }
+  disableModel(modelId: number){
+    return this.http.post(`${this.provider.apiUrl}api/model/changeModelStatus/${modelId}`,{modelId:modelId,
+      enable:false});
+  }
 
 }

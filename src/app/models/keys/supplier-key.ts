@@ -1,9 +1,10 @@
-import {ModelFee} from "./model-fee";
+import {ModelKeyBind} from "./model-key-bind";
 
 export interface SupplierKey{
   supplierKeyId?: number;
   baseUrl?: string;
   apiKey?:string;
   requestIdentifier: number;
-  modelFees?: ModelFee[];
+  enable?:boolean;
+  modelKeyBinds?: ModelKeyBind[];
 }
