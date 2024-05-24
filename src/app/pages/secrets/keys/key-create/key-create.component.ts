@@ -105,7 +105,8 @@ export class KeyCreateComponent {
           baseUrl: value.baseUrl!,
           apiKey: value.apiKey!,
           requestIdentifier: value.requestIdentifier!,
-          modelKeyBinds: this.modelKeyBinds
+          modelKeyBinds: this.modelKeyBinds,
+          enable: value.enable!
         })
         .subscribe({
           next: () =>{

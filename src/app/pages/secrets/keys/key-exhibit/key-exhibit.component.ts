@@ -4,7 +4,7 @@ import {NzPopconfirmDirective} from "ng-zorro-antd/popconfirm";
 import {RouterLink} from "@angular/router";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {KeyCallService} from "../../../../services";
-import {SupplierKey} from "../../../../models/keys";
+import {KeyTypes, SupplierKey} from "../../../../models/keys";
 import { admin_routes } from '../../../../routes';
 import {ReactiveFormsModule} from "@angular/forms";
 
@@ -22,7 +22,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 })
 export class KeyExhibitComponent {
   constructor(private call: KeyCallService,private message: NzMessageService) {
+    this.fetchTypes();
   }
+  types:KeyTypes[] | undefined;
   @Output()
   refresh = new EventEmitter<boolean>();
   @Input()
@@ -39,6 +41,20 @@ export class KeyExhibitComponent {
         }
       })
   }
-
+  fetchTypes(){
+    this.call.getKeyTypes().subscribe({
+      next: types=>{
+        this.types = types;
+      },
+      error: err => {
+        this.message.error("加载密钥类型失败")
+      }
+    })
+  }
   protected readonly admin_routes = admin_routes;
+
+  getKeyDescription(requestIdentifier: number | undefined) {
+    let type = this.types?.find(t=>t.requestIdentifier === requestIdentifier);
+    return type === undefined? "未知":type.type;
+  }
 }
