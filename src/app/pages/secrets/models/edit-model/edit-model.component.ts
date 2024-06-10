@@ -27,7 +27,7 @@ export class EditModelComponent {
     name: FormControl<string>;
   }> = this.fb.group({
     modelId: [0, [Validators.required]],
-    name: ['', [Validators.required,Validators.minLength(2), Validators.maxLength(30)]],
+    name: ['', [Validators.required,Validators.minLength(2), Validators.maxLength(200)]],
   });
   constructor(
     private fb: NonNullableFormBuilder,
