@@ -25,9 +25,15 @@ export class EditModelComponent {
   validateForm: FormGroup<{
     modelId: FormControl<number>;
     name: FormControl<string>;
+    isChatModel: FormControl<boolean>;
+    modelValue: FormControl<string>;
+    vision: FormControl<boolean>
   }> = this.fb.group({
     modelId: [0, [Validators.required]],
     name: ['', [Validators.required,Validators.minLength(2), Validators.maxLength(200)]],
+    isChatModel: [true,],
+    modelValue: ['', [Validators.required,Validators.minLength(2), Validators.maxLength(200)]],
+    vision: [true,]
   });
   constructor(
     private fb: NonNullableFormBuilder,
@@ -40,7 +46,10 @@ export class EditModelComponent {
     this._model = model;
     this.validateForm.setValue({
       modelId: this._model!.modelId!,
-      name: this._model!.name!
+      name: this._model!.name!,
+      isChatModel: this._model.isChatModel,
+      modelValue: this._model.modelValue!,
+      vision: this._model.vision
     });
   }
   @Output()
@@ -50,7 +59,10 @@ export class EditModelComponent {
       this.call.updateModel(
         {
           modelId: this._model!.modelId,
-          name: this.validateForm.value.name!
+          name: this.validateForm.value.name!,
+          isChatModel: this.validateForm.value.isChatModel!,
+          modelValue: this.validateForm.value.modelValue,
+          vision: this.validateForm.value.vision!
         })
         .subscribe({
           next: () =>{

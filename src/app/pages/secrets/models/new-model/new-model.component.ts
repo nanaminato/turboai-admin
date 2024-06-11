@@ -23,8 +23,14 @@ import {KeyCallService} from "../../../../services";
 export class NewModelComponent {
   validateForm: FormGroup<{
     name: FormControl<string>;
+    isChatModel: FormControl<boolean>,
+    modelValue: FormControl<string>,
+    vision: FormControl<boolean>
   }> = this.fb.group({
     name: ['', [Validators.required,Validators.minLength(2), Validators.maxLength(200)]],
+    isChatModel: [true,],
+    modelValue: ['', [Validators.required,Validators.minLength(2), Validators.maxLength(200)]],
+    vision: [true,]
   });
   constructor(
     private fb: NonNullableFormBuilder,
@@ -36,7 +42,12 @@ export class NewModelComponent {
   close = new EventEmitter<boolean>();
   submitForm() {
     if (this.validateForm.valid) {
-      this.call.addModel(this.validateForm.value.name!).subscribe({
+      this.call.addModel({
+        name: this.validateForm.value.name!,
+        modelValue: this.validateForm.value.modelValue!,
+        isChatModel: this.validateForm.value.isChatModel!,
+        vision: this.validateForm.value.vision!
+      }).subscribe({
         next: () =>{
           this.message.success("添加成功");
           this.close.next(true);

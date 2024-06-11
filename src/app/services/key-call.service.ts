@@ -19,8 +19,8 @@ export class KeyCallService{
   deleteModel(modelId: number){
     return this.http.delete<any>(`${this.provider.apiUrl}api/model/${modelId}`);
   }
-  addModel(name: string){
-    return this.http.post<any>(`${this.provider.apiUrl}api/model`,{name: name});
+  addModel(model: Model){
+    return this.http.post<any>(`${this.provider.apiUrl}api/model`,model);
   }
   updateModel(model: Model){
     return this.http.put<any>(`${this.provider.apiUrl}api/model/${model.modelId}`,model);
