@@ -12,8 +12,6 @@ import {
   ReactiveFormsModule,
   Validators
 } from "@angular/forms";
-import {NzFormControlComponent, NzFormDirective} from "ng-zorro-antd/form";
-import {NzInputDirective, NzInputGroupComponent} from "ng-zorro-antd/input";
 import {NzCheckboxComponent} from "ng-zorro-antd/checkbox";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {TranslateModule} from "@ngx-translate/core";
@@ -31,10 +29,6 @@ import {admin_routes} from "../../../routes";
     NzColDirective,
     ReactiveFormsModule,
     NzRowDirective,
-    NzFormDirective,
-    NzFormControlComponent,
-    NzInputGroupComponent,
-    NzInputDirective,
     NzCheckboxComponent,
     FormsModule,
     TranslateModule

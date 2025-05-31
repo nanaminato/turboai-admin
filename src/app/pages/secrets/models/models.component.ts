@@ -20,10 +20,8 @@ import {KeyCallService} from "../../../services";
     RouterLink,
     NzModalComponent,
     NzModalContentDirective,
-    NewRoleComponent,
     NzModalModule,
     NzPopconfirmDirective,
-    EditRoleComponent,
     NzTooltipDirective,
     EditModelComponent,
     NewModelComponent
