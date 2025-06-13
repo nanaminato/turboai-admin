@@ -9,14 +9,17 @@ import {
 } from "@angular/forms";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {KeyCallService} from "../../../../services";
+import {NzButtonComponent} from "ng-zorro-antd/button";
+import {Model} from '../../../../models/keys'
 
 @Component({
   selector: 'app-new-model',
   standalone: true,
-    imports: [
-        FormsModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NzButtonComponent
+  ],
   templateUrl: './new-model.component.html',
   styleUrl: './new-model.component.css'
 })
@@ -36,6 +39,13 @@ export class NewModelComponent {
     private fb: NonNullableFormBuilder,
     private message: NzMessageService,
     private call: KeyCallService) {
+
+  }
+  availableModels: Model[] = [];
+  async ngOnInit() {
+    this.call.getAvailableModels().subscribe(
+      models => this.availableModels = models
+    )
 
   }
   @Output()
@@ -64,5 +74,14 @@ export class NewModelComponent {
         }
       });
     }
+  }
+  pasteValue(model : Model,event: MouseEvent) {
+    console.log(model);
+    this.validateForm.controls['name'].setValue(model.name!);
+    this.validateForm.controls['isChatModel'].setValue(model.isChatModel!);
+    this.validateForm.controls['modelValue'].setValue(model.modelValue!);
+    this.validateForm.controls['vision'].setValue(model.vision!);
+    event.stopPropagation();
+    event.preventDefault();
   }
 }

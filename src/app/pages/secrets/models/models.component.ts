@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import {NzSkeletonComponent} from "ng-zorro-antd/skeleton";
 import {RouterLink} from "@angular/router";
-import {NzModalComponent, NzModalContentDirective, NzModalModule} from "ng-zorro-antd/modal";
-import {NewRoleComponent} from "../../accounts/roles/new-role/new-role.component";
+import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzPopconfirmDirective} from "ng-zorro-antd/popconfirm";
-import {EditRoleComponent} from "../../accounts/roles/edit-role/edit-role.component";
 import {NzTooltipDirective} from "ng-zorro-antd/tooltip";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {EditModelComponent} from "./edit-model/edit-model.component";
 import {NewModelComponent} from "./new-model/new-model.component";
 import {Model} from "../../../models/keys";
 import {KeyCallService} from "../../../services";
+import {MultipleAddModelComponent} from "./multiple-add-model/multiple-add-model.component";
 
 @Component({
   selector: 'app-models',
@@ -18,13 +17,12 @@ import {KeyCallService} from "../../../services";
   imports: [
     NzSkeletonComponent,
     RouterLink,
-    NzModalComponent,
-    NzModalContentDirective,
     NzModalModule,
     NzPopconfirmDirective,
     NzTooltipDirective,
     EditModelComponent,
-    NewModelComponent
+    NewModelComponent,
+    MultipleAddModelComponent
   ],
   templateUrl: './models.component.html',
   styleUrl: './models.component.css'
@@ -72,6 +70,12 @@ export class ModelsComponent {
       this.fetchModels(true);
     }
   }
+  multipleAddModalClose($event: boolean) {
+    if($event){
+      this.multipleAddVisible = false;
+      this.fetchModels(true);
+    }
+  }
   editModelVisible: boolean = false;
   editModel: Model | undefined;
   tackleEditClose($event: boolean) {
@@ -107,4 +111,5 @@ export class ModelsComponent {
       }
     })
   }
+  multipleAddVisible: boolean = false;
 }

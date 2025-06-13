@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NzCardComponent} from "ng-zorro-antd/card";
-import {NzPopconfirmDirective} from "ng-zorro-antd/popconfirm";
+import {NzPopconfirmDirective, NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import {RouterLink} from "@angular/router";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {KeyCallService} from "../../../../services";
@@ -13,7 +13,7 @@ import {ReactiveFormsModule} from "@angular/forms";
   standalone: true,
     imports: [
         NzCardComponent,
-        NzPopconfirmDirective,
+        NzPopconfirmModule,
         RouterLink,
         ReactiveFormsModule
     ],

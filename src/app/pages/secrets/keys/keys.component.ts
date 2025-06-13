@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {NzSkeletonComponent} from "ng-zorro-antd/skeleton";
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import {NzPopconfirmDirective} from "ng-zorro-antd/popconfirm";
+import {NzPopconfirmDirective, NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {KeyExhibitComponent} from "./key-exhibit/key-exhibit.component";
 import {SupplierKey} from "../../../models/keys";
@@ -13,9 +13,8 @@ import {ReloadService} from "../../../auth_module/reload.service";
   selector: 'app-keys',
   standalone: true,
   imports: [
-    NzSkeletonComponent,
     RouterLink,
-    NzPopconfirmDirective,
+    NzPopconfirmModule,
     KeyExhibitComponent
   ],
   templateUrl: './keys.component.html',

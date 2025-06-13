@@ -16,6 +16,9 @@ export class KeyCallService{
     }
     return this.http.get<Model[]>(`${this.provider.apiUrl}api/model?keyId=${keyId}`);
   }
+  getAvailableModels(){
+    return this.http.get<Model[]>(`${this.provider.apiUrl}api/open/model`);
+  }
   deleteModel(modelId: number){
     return this.http.delete<any>(`${this.provider.apiUrl}api/model/${modelId}`);
   }

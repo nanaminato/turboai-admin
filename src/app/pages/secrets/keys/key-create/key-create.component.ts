@@ -25,7 +25,6 @@ import {NzOptionComponent, NzSelectComponent} from "ng-zorro-antd/select";
     ReactiveFormsModule,
     NzTooltipDirective,
     NzInputNumberComponent,
-    NzSkeletonComponent,
     NzSelectComponent,
     NzOptionComponent
   ],

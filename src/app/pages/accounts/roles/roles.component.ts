@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {NzSkeletonComponent} from "ng-zorro-antd/skeleton";
 import {RouterLink} from "@angular/router";
 import {NzMessageService} from "ng-zorro-antd/message";
-import {NzModalComponent, NzModalContentDirective, NzModalModule} from "ng-zorro-antd/modal";
+import {NzModalModule} from "ng-zorro-antd/modal";
 import {NewRoleComponent} from "./new-role/new-role.component";
 import {NzPopconfirmDirective} from "ng-zorro-antd/popconfirm";
 import {EditRoleComponent} from "./edit-role/edit-role.component";
@@ -16,8 +16,6 @@ import {AccountCallService} from "../../../services";
   imports: [
     NzSkeletonComponent,
     RouterLink,
-    NzModalComponent,
-    NzModalContentDirective,
     NewRoleComponent,
     NzModalModule,
     NzPopconfirmDirective,
